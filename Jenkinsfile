@@ -1,10 +1,18 @@
 pipeline {
     agent {
     node {
-        label 'ecsagent'
+        label 'Prod-2'
     }
 }
     stages {
+        stage('Scan') {
+            steps {
+                withSonarQubeEnv(installationName: 'sonar-test'){
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                    }
+                }
+            }
+        
         stage('Install if docker is not avaliable') {
             steps {
                 sh 'chmod +x ./bash/docker.sh'
