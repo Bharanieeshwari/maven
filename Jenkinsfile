@@ -9,7 +9,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(installationName: 'sonar-test'){
                     sh "chmod +x -R ${env.WORKSPACE}"
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:5.0.1.3006:sonar'
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                     }
                 }
             }
