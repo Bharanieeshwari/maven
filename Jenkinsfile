@@ -1,8 +1,9 @@
 pipeline {
-    {
-    agent { label 'prod-1' }
+    agent {
+    node {
+        label 'prod-1'
     }
-
+}
     stages {
         stage('Scan') {
             steps {
