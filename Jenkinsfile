@@ -1,8 +1,6 @@
 pipeline {
-    agent {
-    node {
-        label 'Prod-2'
-    }
+lable{ 'escagent'
+     }
 }
     stages {
         stage('Scan') {
