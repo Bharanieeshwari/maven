@@ -1,6 +1,5 @@
 pipeline {
-lable{ 'escagent'
-     }
+ agent { label 'ecsagent' }
 }
     stages {
         stage('Scan') {
