@@ -1,6 +1,6 @@
 pipeline {
     {
-    agent { label 'ecsagent' }
+    agent { label 'prod-1' }
     }
 
     stages {
