@@ -1,8 +1,9 @@
 pipeline {
-    {
-    agent { label 'ecsagent' }
+    agent {
+    node {
+        label 'ecsagent'
     }
-
+}
     stages {
         stage('Scan') {
             steps {
