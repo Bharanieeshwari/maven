@@ -1,20 +1,24 @@
 pipeline {
     agent {
-    node {
-        label 'prod-1'
+        node {
+            label 'prod-1'
+        }
     }
-}
+    
     stages {
         stage('Scan') {
             steps {
-                withSonarQubeEnv(installationName: 'sonar-test'){
-                    sh "chmod +x -R ${env.WORKSPACE}"
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                script {
+                    def scannerHome = tool name: 'SonarQube Scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                    withSonarQubeEnv('sonar-test') {
+                        sh "chmod +x -R ${env.WORKSPACE}"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
+        }
         
-        stage('Install if docker is not avaliable') {
+        stage('Install if Docker is not available') {
             steps {
                 sh 'chmod +x ./bash/docker.sh'
                 sh './bash/docker.sh'
